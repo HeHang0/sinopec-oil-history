@@ -1,5 +1,7 @@
 name: Fetch and publish oil prices
 
+# Runs the collector on GitHub-hosted runners and deploys Pages in the same run.
+
 on:
   schedule:
     # GitHub cron is UTC. 22:00 UTC = 06:00 Asia/Shanghai.

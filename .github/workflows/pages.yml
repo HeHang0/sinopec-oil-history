@@ -1,5 +1,7 @@
 name: Deploy static site
 
+# Also deployed directly by fetch.yml after scheduled data updates.
+
 on:
   push:
     branches: [main]
