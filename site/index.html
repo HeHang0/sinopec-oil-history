@@ -28,50 +28,21 @@
 
   <main class="wrap">
     <section class="toolbar panel" aria-label="数据筛选">
-      <label class="field province-field">
+      <label class="field">
         <span class="field-label">省份</span>
         <select id="province-select" aria-label="选择省份"></select>
       </label>
-
-      <div class="field datetime-field" id="datetime-field">
-        <span class="field-label">日期时间</span>
-        <button type="button" class="datetime-trigger" id="datetime-trigger" aria-haspopup="dialog" aria-expanded="false">
-          <span class="datetime-dot" aria-hidden="true"></span>
-          <span class="datetime-label" id="datetime-label">全部时间</span>
-          <span class="datetime-caret" aria-hidden="true">⌄</span>
-        </button>
-        <div class="datetime-popover" id="datetime-popover" role="dialog" aria-label="选择日期时间范围" hidden>
-          <div class="picker-head">
-            <strong>选择日期时间</strong>
-            <span>按调价日期筛选</span>
-          </div>
-          <div class="picker-presets" role="group" aria-label="快捷时间范围">
-            <button type="button" data-preset="all">全部</button>
-            <button type="button" data-preset="3y">近 3 年</button>
-            <button type="button" data-preset="1y">近 1 年</button>
-          </div>
-          <div class="picker-inputs">
-            <label>
-              <span>开始</span>
-              <input type="datetime-local" id="range-start">
-            </label>
-            <label>
-              <span>结束</span>
-              <input type="datetime-local" id="range-end">
-            </label>
-          </div>
-          <p class="picker-hint" id="picker-hint">选择后点击右侧「应用」</p>
-        </div>
-      </div>
-
-      <div class="field action-field">
-        <span class="field-label">筛选</span>
-        <button type="button" class="apply-button" id="apply-filter">应用</button>
-      </div>
-
-      <div class="field zone-field" id="zone-field" hidden>
+      <div class="field grow" id="zone-field" hidden>
         <span class="field-label">价区</span>
-        <div class="segmented zone-tabs" id="zone-tabs" role="tablist" aria-label="选择价区"></div>
+        <div class="segmented" id="zone-tabs" role="tablist" aria-label="选择价区"></div>
+      </div>
+      <div class="field">
+        <span class="field-label">时间范围</span>
+        <div class="segmented" id="range-tabs" role="tablist" aria-label="选择时间范围">
+          <button type="button" data-range="all" class="active">全部</button>
+          <button type="button" data-range="3y">近 3 年</button>
+          <button type="button" data-range="1y">近 1 年</button>
+        </div>
       </div>
     </section>
 
