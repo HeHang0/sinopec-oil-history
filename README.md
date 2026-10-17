@@ -151,6 +151,31 @@ docker logs -f sinopec-oil-history
 > 如果远端默认分支叫 `master`，请把 `.env` 里的 `GIT_BRANCH` 改成 `master`，
 > 并把 `.github/workflows/pages.yml` 的 `branches` 一起改掉。
 
+## 用 GitHub Actions 定时抓取（不需要自建服务）
+
+`.github/workflows/fetch.yml` 提供了一条完全托管在 GitHub 上的采集链路：
+
+1. 每天 06:00（北京时间）由 schedule 触发；
+2. 在 Actions runner 里执行 `python -m app.main --once --repo-dir .`；
+3. 用 `GITHUB_TOKEN` 把变化的 `site/` 提交回仓库；
+4. 同一 workflow 直接部署 GitHub Pages。
+
+不需要配置 SSH 私钥，也不需要运行 Docker 容器。也可以在 Actions 页面手动
+`Run workflow` 立即执行一次。
+
+默认 cron 是：
+
+```yaml
+- cron: "0 22 * * *"   # UTC 22:00 = 北京 06:00
+```
+
+- 想改成其他时间，修改这一行；cron 使用的是 UTC。
+- 想每 N 天执行一次，可以改成 `0 22 */N * *`（按月内日期触发，跨月边界不严格）。
+- GitHub 的定时任务可能有几分钟到更久的延迟；它保证的是“按计划触发”，不是精确到秒。
+- 公开仓库连续 60 天没有任何活动时，GitHub 可能自动停用 schedule；重新提交或手动运行即可恢复。
+- 使用 `GITHUB_TOKEN` 推送不会再次触发 `pages.yml`，所以 `fetch.yml` 自己完成了 Pages 部署。
+- 如果仓库启用了分支保护，需要允许 GitHub Actions 向默认分支推送，或在分支规则里放行该 workflow。
+
 ## 镜像
 
 本地构建：
