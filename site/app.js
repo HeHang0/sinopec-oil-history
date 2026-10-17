@@ -30,7 +30,8 @@ const state = {
   zones: [],
   zone: "",
   product: "92",
-  range: "all",
+  rangeStart: "",
+  rangeEnd: "",
 };
 
 const el = {
@@ -39,7 +40,14 @@ const el = {
   province: document.getElementById("province-select"),
   zoneField: document.getElementById("zone-field"),
   zoneTabs: document.getElementById("zone-tabs"),
-  rangeTabs: document.getElementById("range-tabs"),
+  datetimeField: document.getElementById("datetime-field"),
+  datetimeTrigger: document.getElementById("datetime-trigger"),
+  datetimePopover: document.getElementById("datetime-popover"),
+  datetimeLabel: document.getElementById("datetime-label"),
+  rangeStartInput: document.getElementById("range-start"),
+  rangeEndInput: document.getElementById("range-end"),
+  pickerHint: document.getElementById("picker-hint"),
+  applyFilter: document.getElementById("apply-filter"),
   latestDate: document.getElementById("latest-date"),
   cards: document.getElementById("cards"),
   chips: document.getElementById("product-chips"),
@@ -106,20 +114,84 @@ function zoneRows() {
   return state.rows.filter((row) => !state.zones.length || row.zone === state.zone);
 }
 
-function dateCutoff(rows) {
-  const dates = rows.map((row) => row.date).filter(Boolean).sort();
-  if (!dates.length) return null;
-  const latest = new Date(`${dates[dates.length - 1]}T00:00:00Z`);
-  const months = state.range === "1y" ? 12 : state.range === "3y" ? 36 : 0;
-  if (!months) return null;
-  latest.setUTCMonth(latest.getUTCMonth() - months);
-  return latest.toISOString().slice(0, 10);
+function rangeBounds() {
+  const dates = zoneRows().map((row) => row.date).filter(Boolean).sort();
+  return { min: dates[0] || "", max: dates[dates.length - 1] || "" };
+}
+
+function rangeDescription() {
+  if (!state.rangeStart || !state.rangeEnd) return "全部时间";
+  return `${formatDate(state.rangeStart.slice(0, 10))} – ${formatDate(state.rangeEnd.slice(0, 10))}`;
+}
+
+function syncRangeInputs() {
+  el.rangeStartInput.value = state.rangeStart;
+  el.rangeEndInput.value = state.rangeEnd;
+  el.pickerHint.textContent = "选择后点击右侧「应用」";
+  el.pickerHint.classList.remove("error");
+}
+
+function renderRange() {
+  const label =
+    state.rangeStart && state.rangeEnd
+      ? `${formatDateTime(new Date(state.rangeStart))} → ${formatDateTime(new Date(state.rangeEnd))}`
+      : "全部时间";
+  el.datetimeLabel.textContent = label;
+  el.datetimeLabel.title = label;
+  syncRangeInputs();
+}
+
+function openPopover() {
+  syncRangeInputs();
+  el.datetimePopover.hidden = false;
+  el.datetimeTrigger.setAttribute("aria-expanded", "true");
+}
+
+function closePopover() {
+  el.datetimePopover.hidden = true;
+  el.datetimeTrigger.setAttribute("aria-expanded", "false");
+}
+
+function applyPreset(kind) {
+  const { min, max } = rangeBounds();
+  if (!min || !max) return;
+  let start = min;
+  if (kind === "1y" || kind === "3y") {
+    const latest = new Date(`${max}T00:00:00Z`);
+    latest.setUTCFullYear(latest.getUTCFullYear() - (kind === "1y" ? 1 : 3));
+    const candidate = latest.toISOString().slice(0, 10);
+    start = candidate < min ? min : candidate;
+  }
+  el.rangeStartInput.value = `${start}T00:00`;
+  el.rangeEndInput.value = `${max}T23:59`;
+  el.pickerHint.textContent = "已套用快捷范围，点击「应用」生效";
+  el.pickerHint.classList.remove("error");
+}
+
+function applyRange() {
+  const start = el.rangeStartInput.value;
+  const end = el.rangeEndInput.value;
+  if (!start || !end) {
+    el.pickerHint.textContent = "请选择开始和结束时间";
+    el.pickerHint.classList.add("error");
+    return;
+  }
+  if (start.slice(0, 10) > end.slice(0, 10)) {
+    el.pickerHint.textContent = "开始时间不能晚于结束时间";
+    el.pickerHint.classList.add("error");
+    return;
+  }
+  state.rangeStart = start;
+  state.rangeEnd = end;
+  closePopover();
+  renderAll();
 }
 
 function visibleRows() {
   const rows = zoneRows();
-  const cutoff = dateCutoff(rows);
-  return rows.filter((row) => !cutoff || row.date >= cutoff);
+  const start = state.rangeStart ? state.rangeStart.slice(0, 10) : "";
+  const end = state.rangeEnd ? state.rangeEnd.slice(0, 10) : "";
+  return rows.filter((row) => (!start || row.date >= start) && (!end || row.date <= end));
 }
 
 function productsIn(rows) {
@@ -134,14 +206,26 @@ function productsIn(rows) {
 
 async function init() {
   el.province.addEventListener("change", () => loadProvince(el.province.value));
-  el.rangeTabs.addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-range]");
-    if (!button) return;
-    state.range = button.dataset.range;
-    for (const item of el.rangeTabs.querySelectorAll("button")) {
-      item.classList.toggle("active", item === button);
-    }
-    renderAll();
+
+  el.datetimeTrigger.addEventListener("click", () => {
+    if (el.datetimePopover.hidden) openPopover();
+    else closePopover();
+  });
+
+  el.datetimePopover.addEventListener("click", (event) => {
+    const preset = event.target.closest("button[data-preset]");
+    if (preset) applyPreset(preset.dataset.preset);
+  });
+
+  el.applyFilter.addEventListener("click", applyRange);
+
+  document.addEventListener("click", (event) => {
+    if (el.datetimePopover.hidden || el.datetimeField.contains(event.target)) return;
+    closePopover();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !el.datetimePopover.hidden) closePopover();
   });
 
   try {
@@ -199,6 +283,10 @@ async function loadProvince(slug) {
     state.zone = state.zones[0] || "";
     const products = productsIn(zoneRows());
     state.product = products.includes(state.product) ? state.product : products[0] || "92";
+    const { min, max } = rangeBounds();
+    state.rangeStart = min ? `${min}T00:00` : "";
+    state.rangeEnd = max ? `${max}T23:59` : "";
+    closePopover();
     history.replaceState(null, "", `?p=${encodeURIComponent(slug)}`);
     renderAll();
   } catch (error) {
@@ -210,6 +298,7 @@ async function loadProvince(slug) {
 function renderAll() {
   renderMeta();
   renderZones();
+  renderRange();
   renderCards();
   renderChips();
   renderChart();
@@ -503,7 +592,7 @@ function renderTable() {
   const tbody = el.table.querySelector("tbody");
   thead.innerHTML = "";
   tbody.innerHTML = "";
-  el.tableSubtitle.textContent = `${state.province.name}${state.zone ? ` · ${state.zone}` : ""}`;
+  el.tableSubtitle.textContent = `${state.province.name}${state.zone ? ` · ${state.zone}` : ""} · ${rangeDescription()}`;
   el.tableCount.textContent = `${rows.length} 条记录`;
   el.tableEmpty.hidden = rows.length > 0;
 
