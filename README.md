@@ -125,16 +125,31 @@ docker logs -f sinopec-oil-history
    base64 -w0 ~/.ssh/oil_price_deploy
    ```
 
+   Windows PowerShell：
+
+   ```powershell
+   [Convert]::ToBase64String([IO.File]::ReadAllBytes("$env:USERPROFILE\.ssh\oil_price_deploy"))
+   ```
+
 容器会把私钥写到 `/state/git_key`（权限 600），用 `ssh-keyscan` 写入 known_hosts，并在每次数据变化后 `git commit` + `git push`。
 
 ## 发布 GitHub Pages
 
 1. 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
-2. 推送仓库到 `main` 分支。
+2. 推送仓库到 `main` 分支：
+
+   ```bash
+   git remote add origin git@github.com:<user>/<repo>.git
+   git push -u origin main
+   ```
+
 3. `.github/workflows/pages.yml` 会在 `site/**` 变化时上传 `site/` 并发布。
 4. 页面地址通常是 `https://<user>.github.io/<repo>/`。
 
 容器推送新的 `site/data/*.json` 会触发 Pages 自动重建，因此不需要单独部署前端。
+
+> 如果远端默认分支叫 `master`，请把 `.env` 里的 `GIT_BRANCH` 改成 `master`，
+> 并把 `.github/workflows/pages.yml` 的 `branches` 一起改掉。
 
 ## 镜像
 
@@ -152,6 +167,7 @@ ghcr.io/<owner>/<repo>:latest
 
 ## 说明
 
+- 仓库已包含 2026-10-17 拉取的 31 个省份、共 1115 条初始记录；之后由容器持续合并。
 - 历史接口通常只返回最近约 24 个调价周期；本项目的合并逻辑会长期累积，已有日期不会被新请求截断。
 - 页面与采集器都不依赖第三方 CDN；图表是手写 SVG。
 - 上游页面结构或接口变化时，采集器会在日志中报告具体省份和错误。
