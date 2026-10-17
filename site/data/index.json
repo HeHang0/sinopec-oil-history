@@ -1,0 +1,565 @@
+{
+  "schema": 1,
+  "generated_at": "2026-10-17T08:21:38+00:00",
+  "source": "https://cx.sinopecsales.com/yjkqiantai/core/toHistoryOilPrice",
+  "total_records": 1115,
+  "provinces": [
+    {
+      "slug": "beijing",
+      "name": "北京",
+      "code": 11,
+      "file": "beijing.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0",
+        "-10",
+        "-20"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "tianjin",
+      "name": "天津",
+      "code": 12,
+      "file": "tianjin.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "hebei",
+      "name": "河北",
+      "code": 13,
+      "file": "hebei.json",
+      "records": 23,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "shanxi",
+      "name": "山西",
+      "code": 14,
+      "file": "shanxi.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao95",
+        "aipao98",
+        "0",
+        "-10",
+        "-20",
+        "-35"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "henan",
+      "name": "河南",
+      "code": 41,
+      "file": "henan.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "E92",
+        "E95",
+        "0",
+        "-10"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "shandong",
+      "name": "山东",
+      "code": 37,
+      "file": "shandong.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0",
+        "-10",
+        "-20"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "shanghai",
+      "name": "上海",
+      "code": 31,
+      "file": "shanghai.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "0",
+        "-10"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "jiangsu",
+      "name": "江苏",
+      "code": 32,
+      "file": "jiangsu.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0",
+        "-10"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "zhejiang",
+      "name": "浙江",
+      "code": 33,
+      "file": "zhejiang.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "anhui",
+      "name": "安徽",
+      "code": 34,
+      "file": "anhui.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0",
+        "-10"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "fujian",
+      "name": "福建",
+      "code": 35,
+      "file": "fujian.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "jiangxi",
+      "name": "江西",
+      "code": 36,
+      "file": "jiangxi.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "hubei",
+      "name": "湖北",
+      "code": 42,
+      "file": "hubei.json",
+      "records": 23,
+      "latest": "2026-09-25",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "hunan",
+      "name": "湖南",
+      "code": 43,
+      "file": "hunan.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "guangdong",
+      "name": "广东",
+      "code": 44,
+      "file": "guangdong.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "guangxi",
+      "name": "广西",
+      "code": 45,
+      "file": "guangxi.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "yunnan",
+      "name": "云南",
+      "code": 53,
+      "file": "yunnan.json",
+      "records": 115,
+      "latest": "2026-09-25",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0"
+      ],
+      "zones": [
+        "一价区",
+        "二价区",
+        "三价区",
+        "四价区",
+        "五价区"
+      ]
+    },
+    {
+      "slug": "guizhou",
+      "name": "贵州",
+      "code": 52,
+      "file": "guizhou.json",
+      "records": 72,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0"
+      ],
+      "zones": [
+        "一价区",
+        "二价区",
+        "三价区"
+      ]
+    },
+    {
+      "slug": "hainan",
+      "name": "海南",
+      "code": 46,
+      "file": "hainan.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "chongqing",
+      "name": "重庆",
+      "code": 50,
+      "file": "chongqing.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "sichuan",
+      "name": "四川",
+      "code": 51,
+      "file": "sichuan.json",
+      "records": 48,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0",
+        "-10"
+      ],
+      "zones": [
+        "一价区",
+        "二价区"
+      ]
+    },
+    {
+      "slug": "xinjiang",
+      "name": "新疆",
+      "code": 65,
+      "file": "xinjiang.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "neimenggu",
+      "name": "内蒙古",
+      "code": 15,
+      "file": "neimenggu.json",
+      "records": 48,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "0",
+        "-35"
+      ],
+      "zones": [
+        "一价区",
+        "二价区"
+      ]
+    },
+    {
+      "slug": "liaoning",
+      "name": "辽宁",
+      "code": 21,
+      "file": "liaoning.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "aipao98",
+        "0"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "jilin",
+      "name": "吉林",
+      "code": 22,
+      "file": "jilin.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "aipao98",
+        "0",
+        "-35"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "ningxia",
+      "name": "宁夏",
+      "code": 64,
+      "file": "ningxia.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "0",
+        "-10",
+        "-20",
+        "-35"
+      ],
+      "zones": []
+    },
+    {
+      "slug": "shaanxi",
+      "name": "陕西",
+      "code": 61,
+      "file": "shaanxi.json",
+      "records": 96,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "0"
+      ],
+      "zones": [
+        "柴油价格：其他地区",
+        "柴油价格：西安绕城内",
+        "汽油价格：中北部地区",
+        "汽油价格：陕南地区"
+      ]
+    },
+    {
+      "slug": "heilongjiang",
+      "name": "黑龙江",
+      "code": 23,
+      "file": "heilongjiang.json",
+      "records": 48,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "0",
+        "-35"
+      ],
+      "zones": [
+        "北区",
+        "南区"
+      ]
+    },
+    {
+      "slug": "xizang",
+      "name": "西藏",
+      "code": 54,
+      "file": "xizang.json",
+      "records": 72,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "0",
+        "-20",
+        "-35"
+      ],
+      "zones": [
+        "拉萨价区",
+        "昌都价区",
+        "阿里价区"
+      ]
+    },
+    {
+      "slug": "qinghai",
+      "name": "青海",
+      "code": 63,
+      "file": "qinghai.json",
+      "records": 66,
+      "latest": "2026-09-25",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "0"
+      ],
+      "zones": [
+        "一价区",
+        "二价区",
+        "三价区"
+      ]
+    },
+    {
+      "slug": "gansu",
+      "name": "甘肃",
+      "code": 62,
+      "file": "gansu.json",
+      "records": 24,
+      "latest": "2026-10-16",
+      "earliest": "2025-11-11",
+      "products": [
+        "92",
+        "95",
+        "98",
+        "aipao98",
+        "0",
+        "-10",
+        "-20",
+        "-35"
+      ],
+      "zones": []
+    }
+  ]
+}

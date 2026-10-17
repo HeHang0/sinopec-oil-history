@@ -1,0 +1,18 @@
+services:
+  collector:
+    build: .
+    image: sinopec-oil-history:latest
+    container_name: sinopec-oil-history
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      WORK_DIR: /repo
+      STATE_DIR: /state
+    volumes:
+      - oil_repo:/repo
+      - oil_state:/state
+
+volumes:
+  oil_repo:
+  oil_state:

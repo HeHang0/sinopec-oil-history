@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>全国油价历史 · 中国石化调价记录</title>
+  <meta name="description" content="中国石化各省汽柴油历史调价记录，按调价周期展示价格走势。纯静态页面，不调用第三方接口。">
+  <meta name="theme-color" content="#b91c1c">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c8102e'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='white' font-family='sans-serif'%3E油%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">油</span>
+        <div>
+          <h1>全国油价历史</h1>
+          <p class="tagline">中国石化 · 各省汽柴油调价记录</p>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <span class="pulse" aria-hidden="true"></span>
+        <span id="meta-text">正在加载数据…</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="toolbar panel" aria-label="数据筛选">
+      <label class="field">
+        <span class="field-label">省份</span>
+        <select id="province-select" aria-label="选择省份"></select>
+      </label>
+      <div class="field grow" id="zone-field" hidden>
+        <span class="field-label">价区</span>
+        <div class="segmented" id="zone-tabs" role="tablist" aria-label="选择价区"></div>
+      </div>
+      <div class="field">
+        <span class="field-label">时间范围</span>
+        <div class="segmented" id="range-tabs" role="tablist" aria-label="选择时间范围">
+          <button type="button" data-range="all" class="active">全部</button>
+          <button type="button" data-range="3y">近 3 年</button>
+          <button type="button" data-range="1y">近 1 年</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="latest" aria-labelledby="latest-title">
+      <div class="section-head">
+        <div>
+          <h2 id="latest-title">最新价格</h2>
+          <p id="latest-date" class="muted"></p>
+        </div>
+        <p class="hint">单位：元/升</p>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <section class="panel chart-panel" aria-labelledby="chart-title">
+      <div class="section-head chart-head">
+        <div>
+          <h2 id="chart-title">价格走势</h2>
+          <p id="chart-subtitle" class="muted"></p>
+        </div>
+        <div class="chips" id="product-chips" role="tablist" aria-label="选择油品"></div>
+      </div>
+      <div class="chart-wrap" id="chart-wrap">
+        <svg id="chart" role="img" aria-label="油价走势图" viewBox="0 0 920 340" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="chart-tooltip" id="chart-tooltip" hidden></div>
+      </div>
+      <p class="empty" id="chart-empty" hidden>当前范围内没有足够的记录。</p>
+    </section>
+
+    <section class="panel table-panel" aria-labelledby="table-title">
+      <div class="section-head">
+        <div>
+          <h2 id="table-title">历史记录</h2>
+          <p class="muted" id="table-subtitle"></p>
+        </div>
+        <p class="hint" id="table-count"></p>
+      </div>
+      <div class="table-wrap">
+        <table id="history-table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="empty" id="table-empty" hidden>暂无数据。</p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>数据来源：中国石化“今日油价 / 历史油价”公开页面。页面为纯静态生成，不调用第三方接口。</p>
+    <p id="footer-meta" class="muted"></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
