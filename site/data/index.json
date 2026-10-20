@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-17T08:21:38+00:00",
+  "generated_at": "2026-10-20T00:53:50+00:00",
   "source": "https://cx.sinopecsales.com/yjkqiantai/core/toHistoryOilPrice",
-  "total_records": 1115,
+  "total_records": 1120,
   "provinces": [
     {
       "slug": "beijing",
@@ -280,8 +280,8 @@
       "name": "云南",
       "code": 53,
       "file": "yunnan.json",
-      "records": 115,
-      "latest": "2026-09-25",
+      "records": 120,
+      "latest": "2026-10-16",
       "earliest": "2025-11-11",
       "products": [
         "92",
