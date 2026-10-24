@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-20T00:53:50+00:00",
+  "generated_at": "2026-10-24T00:13:27+00:00",
   "source": "https://cx.sinopecsales.com/yjkqiantai/core/toHistoryOilPrice",
-  "total_records": 1120,
+  "total_records": 1124,
   "provinces": [
     {
       "slug": "beijing",
@@ -213,8 +213,8 @@
       "name": "湖北",
       "code": 42,
       "file": "hubei.json",
-      "records": 23,
-      "latest": "2026-09-25",
+      "records": 24,
+      "latest": "2026-10-16",
       "earliest": "2025-11-11",
       "products": [
         "92",
@@ -526,8 +526,8 @@
       "name": "青海",
       "code": 63,
       "file": "qinghai.json",
-      "records": 66,
-      "latest": "2026-09-25",
+      "records": 69,
+      "latest": "2026-10-16",
       "earliest": "2025-11-11",
       "products": [
         "92",
