@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-30T01:31:05+00:00",
+  "generated_at": "2026-10-31T01:24:31+00:00",
   "source": "https://cx.sinopecsales.com/yjkqiantai/core/toHistoryOilPrice",
-  "total_records": 1218,
+  "total_records": 1219,
   "provinces": [
     {
       "slug": "beijing",
@@ -43,8 +43,8 @@
       "name": "河北",
       "code": 13,
       "file": "hebei.json",
-      "records": 23,
-      "latest": "2026-10-16",
+      "records": 24,
+      "latest": "2026-10-30",
       "earliest": "2025-11-11",
       "products": [
         "92",
